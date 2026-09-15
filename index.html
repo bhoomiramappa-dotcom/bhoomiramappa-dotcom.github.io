@@ -1,1 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhoomika R — Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
+  :root{
+    --ink:#121821;
+    --panel:#1a222d;
+    --line:#2b3542;
+    --paper:#eef1f4;
+    --paper-dim:#aab4c0;
+    --teal:#4fa79f;
+    --amber:#e3a857;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--teal);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- header / nav ---------- */
+  header{
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    background:rgba(18,24,33,0.92);
+    backdrop-filter:blur(6px);
+    z-index:10;
+  }
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+  .brand{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:500;
+    font-size:15px;
+    color:var(--paper);
+  }
+  .brand .cursor{
+    display:inline-block;
+    width:8px;
+    color:var(--teal);
+    animation:blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  @media (prefers-reduced-motion: reduce){
+    .brand .cursor{animation:none;}
+  }
+  nav{display:flex;gap:22px;font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  nav a{color:var(--paper-dim);margin-left:22px;}
+  nav a:first-child{margin-left:0;}
+  nav a:hover{color:var(--teal);text-decoration:none;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 48px;}
+  .hero .role{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--teal);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:38px;
+    line-height:1.25;
+    font-weight:600;
+    max-width:14ch;
+    color:var(--paper);
+  }
+  .hero p{
+    margin-top:20px;
+    max-width:52ch;
+    color:var(--paper-dim);
+    font-size:16px;
+  }
+  .hero .links{
+    margin-top:28px;
+    display:flex;
+    gap:20px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    flex-wrap:wrap;
+  }
+  .hero .links a{margin-right:20px;}
+  .hero .links a:last-child{margin-right:0;}
+
+  /* ---------- section shared ---------- */
+  section{padding:44px 0;border-top:1px solid var(--line);}
+  .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--paper-dim);
+    margin-bottom:20px;
+  }
+  .label span{color:var(--teal);}
+
+  /* ---------- about ---------- */
+  .about p{max-width:58ch;color:var(--paper-dim);font-size:15px;}
+  .about p + p{margin-top:14px;}
+
+  .edu-line{
+    margin-top:22px;
+    font-size:14px;
+    color:var(--paper-dim);
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .edu-line strong{color:var(--paper);font-weight:500;}
+
+  /* ---------- skills ---------- */
+  .skill-row{
+    display:flex;
+    gap:14px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .skill-row:last-child{border-bottom:none;}
+  .skill-row .k{
+    width:120px;
+    flex-shrink:0;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--paper-dim);
+    font-size:13px;
+    padding-top:1px;
+  }
+  .skill-row .v{color:var(--paper);}
+
+  /* ---------- projects ---------- */
+  .project{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project:first-of-type{padding-top:0;}
+  .project:last-child{border-bottom:none;}
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .project h3{
+    font-size:17px;
+    font-weight:600;
+    color:var(--paper);
+  }
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--teal);
+    border:1px solid var(--teal);
+    padding:2px 8px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .project p{
+    margin-top:8px;
+    color:var(--paper-dim);
+    font-size:14.5px;
+    max-width:58ch;
+  }
+  .project .stack{
+    margin-top:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--paper-dim);
+  }
+  .project .repo{
+    margin-top:10px;
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+
+  /* ---------- contact ---------- */
+  .contact-grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-size:15px;
+  }
+  .contact-grid .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--paper-dim);
+    display:inline-block;
+    width:78px;
+  }
+
+  footer{
+    padding:28px 0 48px;
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+  }
+
+  @media (max-width:600px){
+    .hero h1{font-size:30px;}
+    nav{gap:14px;font-size:12px;}
+    .skill-row{flex-direction:column;gap:4px;}
+    .skill-row .k{width:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">bhoomika<span class="cursor">_</span></div>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" id="top">
+    <div class="role">IT & Cybersecurity — Fresher</div>
+    <h1>Bhoomika R</h1>
+    <p>
+      Final-stretch CSE student building small, working security and automation
+      tools — from a file encryption utility to an AI-based exam proctoring
+      system — while learning how real networks and systems hold together.
+    </p>
+    <div class="links">
+      <a href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">github.com/bhoomiramappa-dotcom</a>
+      <a href="mailto:bhoomiramappa@gmail.com">bhoomiramappa@gmail.com</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="label">01 <span>—</span> about</div>
+    <div class="about">
+      <p>
+        I'm an engineering student at Sri Siddhartha School of Engineering, Tumakuru,
+        finishing my BE in Computer Science (expected 2027). My interest sits at the
+        overlap of networking, security, and Python — I like understanding how
+        systems can be broken, and building small tools that make them a little
+        harder to break.
+      </p>
+      <p>
+        Most of what's here started as a personal itch rather than a class
+        assignment: a password checker because I was curious how strength is
+        actually measured, an encryption tool to see AES in practice, a voice
+        assistant just to see how far I could push it.
+      </p>
+    </div>
+    <div class="edu-line">
+      <span><strong>PUC</strong> — 86%, 2023</span>
+      <span>·</span>
+      <span><strong>SSLC</strong> — 90%, 2021</span>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="label">02 <span>—</span> skills</div>
+    <div class="skill-row">
+      <div class="k">languages</div>
+      <div class="v">Python, C, C++, Java</div>
+    </div>
+    <div class="skill-row">
+      <div class="k">security</div>
+      <div class="v">Network security, encryption, file encryption/decryption</div>
+    </div>
+    <div class="skill-row">
+      <div class="k">networking</div>
+      <div class="v">TCP/IP, DNS, HTTP/HTTPS, ARP</div>
+    </div>
+    <div class="skill-row">
+      <div class="k">web &amp; data</div>
+      <div class="v">HTML, CSS, JavaScript, SQL</div>
+    </div>
+    <div class="skill-row">
+      <div class="k">foundations</div>
+      <div class="v">OOP, data structures &amp; algorithms</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="label">03 <span>—</span> projects</div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Online Exam Proctoring System with Voice Assistant</h3>
+        <span class="tag">AI / CV</span>
+      </div>
+      <p>
+        Monitors suspicious activity during online exams by tracking face, eye,
+        and head movement, with voice-based alerts when something looks off.
+        Major academic project.
+      </p>
+      <div class="stack">Python · OpenCV · MediaPipe · FastAPI</div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>File Encryption and Decryption Tool</h3>
+        <span class="tag">SECURITY</span>
+      </div>
+      <p>
+        A command-line utility that encrypts and decrypts files, built to get
+        hands-on with applied cryptography rather than just reading about it.
+      </p>
+      <div class="stack">Python</div>
+      <a class="repo" href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">view repo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Password Strength Checker</h3>
+        <span class="tag">SECURITY</span>
+      </div>
+      <p>
+        Evaluates a password's strength in real time based on length,
+        complexity, and entropy, with feedback on how to make it stronger.
+      </p>
+      <div class="stack">Python</div>
+      <a class="repo" href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">view repo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Password Generator Website</h3>
+        <span class="tag">WEB</span>
+      </div>
+      <p>
+        Generates strong, random passwords based on criteria the user sets —
+        length, symbols, numbers — right in the browser.
+      </p>
+      <div class="stack">HTML · CSS · JavaScript</div>
+      <a class="repo" href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">view repo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Cybersecurity Quiz App</h3>
+        <span class="tag">SECURITY</span>
+      </div>
+      <p>
+        An interactive quiz that tests and builds awareness of core
+        cybersecurity concepts — built as a way to reinforce my own learning.
+      </p>
+      <div class="stack">Python</div>
+      <a class="repo" href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">view repo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Voice Assistant</h3>
+        <span class="tag">AUTOMATION</span>
+      </div>
+      <p>
+        A Python-based desktop assistant that responds to voice commands to
+        carry out basic tasks.
+      </p>
+      <div class="stack">Python</div>
+      <a class="repo" href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">view repo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Electronic Device Price Comparison Website</h3>
+        <span class="tag">WEB</span>
+      </div>
+      <p>
+        A mini project comparing prices of electronic devices across sources
+        to help with buying decisions.
+      </p>
+      <div class="stack">HTML · CSS · JavaScript</div>
+    </div>
+
+  </section>
+
+  <section id="contact">
+    <div class="label">04 <span>—</span> contact</div>
+    <div class="contact-grid">
+      <div><span class="k">email</span> <a href="mailto:bhoomiramappa@gmail.com">bhoomiramappa@gmail.com</a></div>
+      <div><span class="k">phone</span> <span>+91 86182 86168</span></div>
+      <div><span class="k">github</span> <a href="https://github.com/bhoomiramappa-dotcom" target="_blank" rel="noopener">github.com/bhoomiramappa-dotcom</a></div>
+      <div><span class="k">based in</span> <span>Tumakuru, Karnataka</span></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">Built and maintained by Bhoomika R.</div>
+</footer>
+
+</body>
+</html>
